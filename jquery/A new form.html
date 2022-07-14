@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> Form Val</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script type="text/javascript"> 
+    $(document).ready(function(){
+
+$("#TxtName").blur(function(){
+    $("#TxtNameValidation").empty();
+    if($(this).val()=="" || $(this).val()==null){
+        $("#TxtNameValidation").html("(*) Name required..!!");
+    }
+    else{
+        if(!$(this).val().match($FullNameRegEx)){
+            $("#TxtNameValidation").html("(*) Invalid name..!!");
+        }
+    }
+});
+
+$("#TxtName").keypress(function(e){
+    $("#TxtNameValidation").empty();
+    var Flag=((e.which>=65 && e.which<=90) || (e.which>=97 && e.which<=121));
+    if(Flag==false){
+        $("#TxtNameValidation").html("Invalid Input..!!");
+    }
+    return Flag;
+});
+
+$("#TxtContactNo").blur(function(){
+    $("#TxtContactNoValidation").empty();
+    if($(this).val()=="" || $(this).val()==null){
+        $("#TxtContactNoValidation").html("(*) Contact no. required..!!");
+    }
+    else{
+        if(!$(this).val().match($ConNoRegEx)){
+            $("#TxtContactNoValidation").html("(*) Invalid contact no..!!");
+        }
+    }
+});
+
+$("#TxtContactNo").keypress(function(e){
+    $("#TxtContactNoValidation").empty();
+    var Flag=(e.which>=48 && e.which<=57);
+    if(Flag==false){
+        $("#TxtContactNoValidation").html("Invalid Input..!!");
+    }
+    return Flag;
+});
+
+
+$("#TxtEmailId").blur(function(){
+    $("#TxtEmailIdValidation").empty();
+    if($(this).val()=="" || $(this).val()==null){
+        $("#TxtEmailIdValidation").html("(*) Email id required..!!");
+    }
+    else{
+        if(!$(this).val().match($EmailIdRegEx)){
+            $("#TxtEmailIdValidation").html("(*) Invalid email id..!!");
+        }
+    }
+});
+
+$("#TxtContactMsg").blur(function(){
+    $("#TxtContactMsgValidation").empty();
+    if($(this).val()=="" || $(this).val()==null){
+        $("#TxtContactMsgValidation").html("(*) Contact message required..!!");
+    }
+    else{
+        if($("#TxtContactMsg").val().length>300){
+            $("#TxtContactMsgValidation").html("(*) Invalid contact message..!!");
+        }
+    }
+});
+    });
+    </script>
+    <style type="text/css"> 
+         small{color:red;}
+
+    </style>
+</head>
+<body>
+        <input type="text" id="TxtName" autofocus placeholder="enter the name here.." maxlength="40"/><br/>
+		<small id="TxtNameValidation"></small>
+		<hr/>
+		<input type="text" id="TxtContactNo" placeholder="enter the contact no. here.." maxlength="10"/><br/>
+		<small id="TxtContactNoValidation"></small>
+		<hr/>
+		<input type="text" id="TxtEmailId" placeholder="enter the email id here.." maxlength="50"/><br/>
+		<small id="TxtEmailIdValidation"></small>
+		<hr/>
+</body>
+</html>
